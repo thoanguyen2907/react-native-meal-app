@@ -2,19 +2,23 @@ import React from 'react';
 import {View, StyleSheet, Button} from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
+import { createStackNavigator } from 'react-navigation-stack';
+import { createAppContainer } from "react-navigation";
 import CategoriesScreen from '../screens/CategoriesScreen';
 import CategoryMealsScreen from '../screens/CategoryMealsScreen';
 import MealsDetailScreen from '../screens/MealsDetailScreen';
 import { HeaderButtons } from 'react-navigation-header-buttons';
 import { Item } from 'react-navigation-header-buttons';
 import CustomHeaderButton from '../components/HeaderButton';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import FiltersScreen from '../screens/FiltersScreen';
 
 // export default NavigationContainer(MealsNavigator)
 const Stack = createNativeStackNavigator();
-
-const  MealsNavigator = ()   => {
+const Tab = createBottomTabNavigator();
+const  MealsNavigator = () => {
   return (
-    <NavigationContainer>
+
       <Stack.Navigator initialRouteName="Category">
         <Stack.Screen name="Category" component={CategoriesScreen} 
          options={{
@@ -53,7 +57,18 @@ const  MealsNavigator = ()   => {
         }}
         />
       </Stack.Navigator>
-    </NavigationContainer>
+  
   );
 }
+
+
+const  MyTabs = () => {
+  return (
+    <Tab.Navigator>
+      <Tab.Screen name="Home" component={HomeScreen} />
+      <Tab.Screen name="Settings" component={SettingsScreen} />
+    </Tab.Navigator>
+  );
+}
+
 export default MealsNavigator;

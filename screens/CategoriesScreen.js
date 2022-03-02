@@ -28,15 +28,7 @@ const CategoriesScreen = ({ navigation }) => {
             numColumns = {2} />
     );
 }
-CategoriesScreen["navigationOptions"] = () => {
-    return {
-      title: "Meal Categories",
-      headerStyle: {
-        backgroundColor: '#4a148c',
-      },
-      headerTintColor: "#fff",
-    };
-  };
+
 const styles = StyleSheet.create({
     screen: {
         flex: 1, 
