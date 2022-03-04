@@ -18,36 +18,42 @@ import { DrawerActions } from '@react-navigation/native';
 // export default NavigationContainer(MealsNavigator)
 const Stack = createNativeStackNavigator();
 
-const  MealsNavigator = () => {
+const  FilterNavigator = (props) => {
   return (
 
-      <Stack.Navigator initialRouteName="Category">
-        <Stack.Screen name="Category" component={CategoriesScreen} 
-        />
-        <Stack.Screen name="CategoryMeals" component={CategoryMealsScreen} />
-        <Stack.Screen name="Favorites" component={FavoritesScreen} />
-        <Stack.Screen name="MealDetails" component={MealsDetailScreen} 
-         options={{
-          headerStyle: {
-            backgroundColor: '#8A2BE2',
-          },
-          headerTintColor: '#fff',
-          headerTitleStyle: {
-            fontWeight: 'bold',
-          },
+      <Stack.Navigator initialRouteName="Filter">
+        <Stack.Screen name="Filter" component={FiltersScreen} 
+        options={ ({route, navigation}) => ({
+        
+          headerLeft: () => (
+        <HeaderButtons HeaderButtonComponent={CustomHeaderButton}>
+              <Item
+                title="Menu"
+                iconName="ios-menu"
+                onPress={() => {
+                  props.navigation.dispatch(DrawerActions.toggleDrawer());
+                
+                }}
+              />
+            </HeaderButtons>
+          )
+            
+          ,
           headerRight: () => (
+
             <HeaderButtons HeaderButtonComponent={CustomHeaderButton}>
             <Item
-              title="Favorite"
-              iconName="ios-star"
-              onPress={() => {
-                console.log('Mark as favorite!');
-              }}
+              title="Save"
+              iconName="ios-save"
+              onPress={route.params.save()} 
+            
             />
           </HeaderButtons>
           )
-        }}
+           
+        })}
         />
+      
       </Stack.Navigator>
   
   );
@@ -55,4 +61,4 @@ const  MealsNavigator = () => {
 
 
 
-export default MealsNavigator;
+export default FilterNavigator;

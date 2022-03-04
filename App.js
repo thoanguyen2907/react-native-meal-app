@@ -6,6 +6,9 @@ import AppLoading from 'expo-app-loading';
 import * as Font from 'expo-font';
 import MealsNavigator from './navigation/MealsNavigator';
 import {enableScreens} from 'react-native-screens'
+import { NavigationContainer } from '@react-navigation/native';
+import BottomTabNavigator from './navigation/TabNavigator';
+import MainNavigator from './navigation/TabNavigator';
 const fetchFonts = () => {
   return Font.loadAsync({
     'open-sans': require('./assets/fonts/OpenSans-Regular.ttf'),
@@ -25,7 +28,10 @@ export default function App() {
 />
     );
   }
-  return <MealsNavigator/>
+  return (
+  <NavigationContainer>
+    <MainNavigator/>
+  </NavigationContainer>)
 }
 
 const styles = StyleSheet.create({
