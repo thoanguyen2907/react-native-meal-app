@@ -3,34 +3,41 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import MealsNavigator from "./MealsNavigator";
 import FavoritesScreen from '../screens/FavoritesScreen'
 import { Ionicons } from "@expo/vector-icons";
- 
+import FavNavigator from "./FavNavigator";
+import { createDrawerNavigator } from '@react-navigation/drawer';
+import FilterNavigator from "./FilterNavigator";
+
 const Tab = createBottomTabNavigator();
- 
+const Drawer = createDrawerNavigator();
 const BottomTabNavigator = () => {
   return (
-    <Tab.Navigator 
-    tabBarOptions={{
-        activeTintColor: "#F08080",
-        showIcon: true, showLabel: false 
-    }}
-    >
-      <Tab.Screen name="Home" component={MealsNavigator} 
+    <Tab.Navigator>
+      <Tab.Screen name="Category" component={MealsNavigator} 
       options={{ 
-        tabBarLabel: "Home",
-          tabBarIcon: () => {
-        return <Ionicons name = "ios-home"  size={ 20 } color={ 'red' }/>
-    }}}
-    />
-      <Tab.Screen name="FavoritesScreen" component={FavoritesScreen}
+          tabBarIcon: (tabInfo) => {
+        return <Ionicons name = "ios-home"  size={ 20 } color={tabInfo.color}/>
+    },
+    tabBarColor: '#7FFFD4'
+}} />
+      <Tab.Screen name="Favorites" component={FavNavigator}
       options={{ 
-        tabBarLabel: "Favorite",
-        tabBarIcon: () => {
-        return <Ionicons name = "ios-star"  size={ 20 } color={ 'red' }/>
-    }}}
+        tabBarIcon: (tabInfo) => {
+        return <Ionicons name = "ios-star"  size={ 20 } color={tabInfo.color}/>
+    },
+    tabBarColor: '#7FFFD4'
+}}
        />
     </Tab.Navigator>
   );
 };
  
-export default BottomTabNavigator;
+const MainNavigator = () => {
+  return (
+       <Drawer.Navigator>
+      <Drawer.Screen name="Category" component={BottomTabNavigator} />
+      <Drawer.Screen name="Filter" component={FilterNavigator} />
+    </Drawer.Navigator>
+  )
+}
+export default MainNavigator;
  

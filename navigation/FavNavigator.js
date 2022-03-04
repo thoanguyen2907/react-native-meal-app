@@ -13,21 +13,19 @@ import CustomHeaderButton from '../components/HeaderButton';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import FiltersScreen from '../screens/FiltersScreen';
 import FavoritesScreen from '../screens/FavoritesScreen';
-import { DrawerActions } from '@react-navigation/native';
 
 // export default NavigationContainer(MealsNavigator)
 const Stack = createNativeStackNavigator();
 
-const  MealsNavigator = () => {
+const  FavNavigator = () => {
   return (
 
-      <Stack.Navigator initialRouteName="Category">
-        <Stack.Screen name="Category" component={CategoriesScreen} 
+      <Stack.Navigator initialRouteName="Favorites">
+        <Stack.Screen name="Favorites" component={FavoritesScreen} 
         />
-        <Stack.Screen name="CategoryMeals" component={CategoryMealsScreen} />
-        <Stack.Screen name="Favorites" component={FavoritesScreen} />
         <Stack.Screen name="MealDetails" component={MealsDetailScreen} 
          options={{
+          title: 'MealDetails',
           headerStyle: {
             backgroundColor: '#8A2BE2',
           },
@@ -55,4 +53,4 @@ const  MealsNavigator = () => {
 
 
 
-export default MealsNavigator;
+export default FavNavigator;

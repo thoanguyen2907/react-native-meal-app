@@ -8,6 +8,7 @@ import MealsNavigator from './navigation/MealsNavigator';
 import {enableScreens} from 'react-native-screens'
 import { NavigationContainer } from '@react-navigation/native';
 import BottomTabNavigator from './navigation/TabNavigator';
+import MainNavigator from './navigation/TabNavigator';
 const fetchFonts = () => {
   return Font.loadAsync({
     'open-sans': require('./assets/fonts/OpenSans-Regular.ttf'),
@@ -29,7 +30,7 @@ export default function App() {
   }
   return (
   <NavigationContainer>
-    <BottomTabNavigator/>
+    <MainNavigator/>
   </NavigationContainer>)
 }
 
